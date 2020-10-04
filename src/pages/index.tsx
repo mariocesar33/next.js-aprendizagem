@@ -1,9 +1,9 @@
-import Head from 'next/head'
+import { Title  } from '../styles/pages/Home';
 
 export default function Home() {
   return (
     <div>
-      <h1>ola Next</h1>
+      <Title>ola Next</Title>
     </div>
-  )
-}
+  );
+};
