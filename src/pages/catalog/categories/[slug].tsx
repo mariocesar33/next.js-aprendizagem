@@ -10,15 +10,42 @@ interface CategoryProps {
   products: IProduct[];
 }
 
-const Product = () => {
+export default function Category({ products}: CategoryProps) {
   const router = useRouter();
   
   return(
-    <h1>{router.query.rota_dinamica}</h1>
+    <div>
+      <h1>{router.query.slug}</h1>
+
+      <ul>
+          {products.map(product => {
+            return(
+              <li key={product.id}>
+                {product.title}
+              </li>
+            );
+          })}
+        </ul>
+    </div>
   );
 };
 
-export default Product;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await fetch('http://localhost:3333/categories');
+  const categories = await response.json();
+
+  const paths = categories.map(category => {
+    return {
+      params: { slug: category.id }
+    }
+  });
+
+  return {
+    paths,
+    fallback: false,
+  }
+};
 
 export const getStaticProps: GetStaticProps<CategoryProps> = async (context) => {
   const { slug } = context.params;
