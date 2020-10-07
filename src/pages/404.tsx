@@ -1,3 +1,8 @@
-export function NotFound() {
-  return<h1> pag not fond</h1>
+export default function NotFound() {
+  return(
+    <div>
+      <h1>page not found</h1>
+      <p>Are you lost?</p>
+    </div>
+  );
 }
