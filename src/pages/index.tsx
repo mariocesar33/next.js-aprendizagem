@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+
 import { Title  } from '../styles/pages/Home';
 
 interface IProduct {
@@ -11,6 +12,10 @@ interface HomeProps {
 }
 
 export default function Home({ recommendedProducts }: HomeProps) {
+  async function handleSoma() {
+    const math = (await import('../lib/math')).default;
+    alert(math.soma(3, 5));
+  }
   return (
     <div>
       <section>
@@ -26,6 +31,8 @@ export default function Home({ recommendedProducts }: HomeProps) {
           })}
         </ul>
       </section>
+
+      <button onClick={handleSoma}>Somar</button>
     </div>
   );
 };
