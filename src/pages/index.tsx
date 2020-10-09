@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 
+import SEO from '@/components/SEO';
 import { Title  } from '../styles/pages/Home';
 
 interface IProduct {
@@ -13,13 +14,19 @@ interface HomeProps {
 
 export default function Home({ recommendedProducts }: HomeProps) {
   async function handleSoma() {
-    console.log(process.env.NEXT_PUBLIC_API_URL);
+
 
     const math = (await import('../lib/math')).default;
     alert(math.soma(3, 5));
   }
   return (
     <div>
+      <SEO 
+        title="Zulmiera, Bu loja!"
+        image="boot.png"
+        shouldExcludeTitleSuffix 
+      />
+
       <section>
         <Title>Produtos</Title>
 
